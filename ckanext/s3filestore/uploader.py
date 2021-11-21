@@ -113,6 +113,7 @@ class BaseS3Uploader(object):
         s3 = session.resource('s3', endpoint_url=self.host_name,
                               config=botocore.client.Config(signature_version=self.signature))
         try:
+            log.info('Attempting to connect to {0} bucket...'.format(self.bucket_name))
             s3.Object(self.bucket_name, filepath).put(
                 Body=upload_file.read(), ACL='public-read',
                 ContentType=getattr(self, 'mimetype', None))
