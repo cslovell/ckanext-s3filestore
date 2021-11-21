@@ -114,6 +114,12 @@ class BaseS3Uploader(object):
                               config=botocore.client.Config(signature_version=self.signature))
         try:
             log.info('Attempting to connect to {0} bucket...'.format(self.bucket_name))
+            log.info('Using access key ID (var self.p_key): {0}...'.format(self.p_key))
+            log.info('Using secret access key (var self.s_key) {0}...'.format(self.s_key))
+            log.info('Using region {0}...'.format(self.region))
+            log.info('Using signature {0}...'.format(self.signature))
+            log.info('Using hostname {0}...'.format(self.host_name))
+            log.info('Using generated bucket variable {0}...'.format(self.bucket))
             s3.Object(self.bucket_name, filepath).put(
                 Body=upload_file.read(), ACL='public-read',
                 ContentType=getattr(self, 'mimetype', None))
