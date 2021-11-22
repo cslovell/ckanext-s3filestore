@@ -249,6 +249,7 @@ class S3ResourceUploader(BaseS3Uploader):
         self.old_filename = None
 
         upload_field_storage = resource.pop('upload', None)
+        log.info('Resource object: {0}'.format(resource))
         self.clear = resource.pop('clear_upload', None)
 
         if isinstance(upload_field_storage, ALLOWED_UPLOAD_TYPES):
